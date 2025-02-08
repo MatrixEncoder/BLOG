@@ -1,0 +1,193 @@
+---
+import '@fontsource/playfair-display';
+import '@fontsource/inter';
+import '@fontsource/orbitron';
+import 'aos/dist/aos.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="DailyDose - Your Daily Tech Insights" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 min-h-screen">
+    <!-- Animated background particles -->
+    <div class="fixed inset-0 -z-10">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1a1a1a_0%,#000_100%)]"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+    </div>
+
+    <nav class="fixed w-full bg-gray-900/80 backdrop-blur-xl border-b border-gray-700/50 z-50">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="flex items-center space-x-2 group">
+            <div class="relative">
+              <svg class="w-8 h-8 text-yellow-400 transform group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 12h3v9h6v-6h2v6h6v-9h3L12 2zm0 3.5L14.5 8h-5L12 5.5z"/>
+              </svg>
+              <div class="absolute inset-0 bg-yellow-400/30 blur-xl rounded-full transform group-hover:scale-150 transition-transform duration-300"></div>
+            </div>
+            <span class="font-['Orbitron'] text-2xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400 animate-gradient">DailyDose</span>
+          </a>
+          <div class="flex items-center space-x-8">
+            <a href="/" class="nav-link text-cyan-400 font-semibold hover:text-cyan-300 transition-colors">Home</a>
+            <a href="/blog" class="nav-link text-cyan-400 font-semibold hover:text-cyan-300 transition-colors">Articles</a>
+            <a href="/about" class="nav-link text-cyan-400 font-semibold hover:text-cyan-300 transition-colors">About</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="pt-20 relative">
+      <slot />
+    </main>
+
+    <footer class="bg-gray-900/80 backdrop-blur-xl text-gray-300 mt-20 border-t border-gray-700/50">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center space-y-4">
+          <a href="/" class="inline-block group">
+            <div class="relative">
+              <svg class="w-12 h-12 text-yellow-400 transform group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 12h3v9h6v-6h2v6h6v-9h3L12 2zm0 3.5L14.5 8h-5L12 5.5z"/>
+              </svg>
+              <div class="absolute inset-0 bg-yellow-400/30 blur-xl rounded-full transform group-hover:scale-150 transition-transform duration-300"></div>
+            </div>
+          </a>
+          <p class="text-sm">&copy; {new Date().getFullYear()} DailyDose. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      import AOS from 'aos';
+      AOS.init({
+        duration: 800,
+        once: false,
+        mirror: true,
+        offset: 100,
+        easing: 'ease-out-cubic'
+      });
+
+      document.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const nav = document.querySelector('nav');
+        
+        if (scrolled > 100) {
+          nav.classList.add('shadow-lg', 'shadow-black/20');
+        } else {
+          nav.classList.remove('shadow-lg', 'shadow-black/20');
+        }
+      });
+    </script>
+
+    <style is:global>
+      @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .animate-gradient {
+        background-size: 200% auto;
+        animation: gradient 4s linear infinite;
+      }
+
+      .firefly {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 0.4vw;
+        height: 0.4vw;
+        margin: -0.2vw 0 0 9.8vw;
+        animation: ease 200s alternate infinite;
+        pointer-events: none;
+      }
+
+      .firefly::before,
+      .firefly::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        transform-origin: -10vw;
+      }
+
+      .firefly::before {
+        background: #22d3ee;
+        opacity: 0.4;
+        animation: drift ease alternate infinite;
+      }
+
+      .firefly::after {
+        background: white;
+        opacity: 0;
+        box-shadow: 0 0 0vw 0vw #22d3ee;
+        animation: drift ease alternate infinite, flash ease infinite;
+      }
+
+      .firefly:nth-child(1) { animation-duration: 89s; }
+      .firefly:nth-child(2) { animation-duration: 102s; }
+      .firefly:nth-child(3) { animation-duration: 95s; }
+      .firefly:nth-child(4) { animation-duration: 78s; }
+      .firefly:nth-child(5) { animation-duration: 86s; }
+      .firefly:nth-child(6) { animation-duration: 92s; }
+      .firefly:nth-child(7) { animation-duration: 83s; }
+      .firefly:nth-child(8) { animation-duration: 97s; }
+
+      @keyframes drift {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes flash {
+        0%, 30%, 100% { opacity: 0; box-shadow: 0 0 0vw 0vw #22d3ee; }
+        5% { opacity: 1; box-shadow: 0 0 2vw 0.4vw #22d3ee; }
+      }
+
+      .nav-link {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #22d3ee;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-link:hover::after {
+        transform: translateX(0);
+      }
+
+      ::selection {
+        background-color: #22d3ee;
+        color: #1a1a1a;
+      }
+    </style>
+  </body>
+</html>

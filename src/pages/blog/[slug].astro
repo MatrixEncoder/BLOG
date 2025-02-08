@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <header class="text-center mb-16" data-aos="fade-up">
+      <h1 class="font-['Orbitron'] text-4xl md:text-5xl mb-4 text-cyan-400">{entry.data.title}</h1>
+      <time class="text-gray-400">{entry.data.date}</time>
+    </header>
+    
+    <div 
+      class="prose prose-lg prose-invert prose-cyan mx-auto"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      <Content />
+    </div>
+
+    {entry.data.links && entry.data.links.length > 0 && (
+      <div class="mt-16 p-6 bg-gray-800 rounded-lg border border-gray-700" data-aos="fade-up">
+        <h2 class="font-['Orbitron'] text-xl mb-4 text-cyan-400">Useful Links</h2>
+        <ul class="space-y-2">
+          {entry.data.links.map(link => (
+            <li>
+              <a 
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-cyan-400 hover:text-cyan-300 transition-colors"
+              >
+                {link.title} →
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </article>
+</Layout>

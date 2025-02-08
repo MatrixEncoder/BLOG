@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Me">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <section data-aos="fade-up">
+      <h1 class="font-['Orbitron'] text-4xl md:text-5xl mb-8 text-center">
+        <span class="glowing-text">Suryansh Srivastava</span>
+      </h1>
+      <div class="prose prose-lg prose-invert mx-auto">
+        <p class="text-gray-300 font-medium text-lg leading-relaxed">
+          Hey there! 👋 I'm <span class="glowing-text">Suryansh</span>, a tech explorer diving deep into the realms of cybersecurity and AI. Think of me as your digital world tour guide – breaking down complex tech concepts into bite-sized, digestible pieces.
+        </p>
+        <p class="text-gray-300 font-medium text-lg leading-relaxed mt-6">
+          When I'm not cracking security puzzles or training AI models, you'll find me competing in hackathons, building cool projects, and sharing what I learn along the way. This blog? It's my digital playground where I turn tech jargon into exciting stories and practical insights.
+        </p>
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 mt-8 border border-gray-700">
+          <h2 class="text-cyan-400 font-['Orbitron'] text-xl mb-4">Quick Facts:</h2>
+          <ul class="space-y-2 text-gray-300">
+            <li>🎯 Currently mastering: Advanced penetration testing & ML algorithms</li>
+            <li>🛠️ Favorite tools: Kali Linux, TensorFlow, and a good cup of coffee</li>
+            <li>🌟 Mission: Making cybersecurity and AI accessible to everyone</li>
+            <li>🎮 When not coding: Enjoying story-based games, coz I like gaming ALOT! (I mean, who doesn't? LoL) </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .glowing-text {
+    color: #22d3ee;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.5),
+                 0 0 20px rgba(34, 211, 238, 0.3),
+                 0 0 30px rgba(34, 211, 238, 0.2);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px rgba(34, 211, 238, 0.5),
+                   0 0 20px rgba(34, 211, 238, 0.3),
+                   0 0 30px rgba(34, 211, 238, 0.2);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(34, 211, 238, 0.6),
+                   0 0 30px rgba(34, 211, 238, 0.4),
+                   0 0 40px rgba(34, 211, 238, 0.3);
+    }
+  }
+</style>

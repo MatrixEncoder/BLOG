@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const funFacts = [
+  "The first computer mouse was made of wood!",
+  "The first computer virus was created in 1983!",
+  "The first domain name ever registered was Symbolics.com!",
+  "The first tweet was sent by Jack Dorsey in 2006!",
+  "The first YouTube video was uploaded in 2005!",
+  "The first iPhone was released in 2007!",
+  "The first programming language was called Fortran!",
+  "The first computer game was created in 1962!"
+];
+
+const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+
+const featuredPosts = [
+  {
+    title: "Getting Started with Web Development",
+    date: "2024-04-10",
+    excerpt: "Learn the fundamentals of web development and start your journey...",
+    slug: "getting-started-web-dev"
+  },
+  {
+    title: "The Art of Writing Clean Code",
+    date: "2024-04-08",
+    excerpt: "Discover the principles and practices that lead to maintainable code...",
+    slug: "clean-code-principles"
+  },
+  {
+    title: "Understanding Modern JavaScript",
+    date: "2024-04-05",
+    excerpt: "Explore the latest features and best practices in JavaScript development...",
+    slug: "modern-javascript"
+  }
+];
+---
+
+<Layout title="DailyDose - Tech Blog">
+  <div class="min-h-screen">
+    <!-- Hero Section with Enhanced Animations -->
+    <div class="h-screen flex flex-col items-center justify-center bg-gray-900 relative overflow-hidden">
+      <!-- Animated Background -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1a1a1a_0%,#000_100%)]"></div>
+        <div class="absolute inset-0 opacity-30">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              class="absolute rounded-full"
+              style={`
+                width: ${Math.random() * 4 + 1}px;
+                height: ${Math.random() * 4 + 1}px;
+                background: #22d3ee;
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                animation: float ${Math.random() * 10 + 5}s linear infinite;
+              `}
+            ></div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="relative z-10 text-center px-4" data-aos="zoom-in">
+        <div class="mb-8">
+          <svg class="w-24 h-24 mx-auto mb-6 batman-logo text-yellow-400 animate-pulse" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.54-2.77 8.62-7 10.19-4.23-1.57-7-5.65-7-10.19v-4.7l7-3.12z"/>
+          </svg>
+          <h1 class="font-['Orbitron'] text-6xl md:text-7xl lg:text-8xl mb-6 gradient-text animate-text">
+            DailyDose
+          </h1>
+        </div>
+        <p class="text-2xl text-cyan-400 mb-8 font-bold tracking-wide">Your Daily Tech Insights</p>
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto mb-12 transform hover:scale-105 transition-all duration-300">
+          <p class="text-lg text-gray-300">
+            <span class="text-cyan-400 font-bold">Did you know?</span><br>
+            {randomFact}
+          </p>
+        </div>
+        <div class="text-cyan-400 text-lg font-bold">
+          Scroll Down to Explore
+          <div class="slide-arrow text-3xl mt-4">↓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <!-- Featured Posts -->
+      <section class="py-16">
+        <h2 class="font-['Orbitron'] text-3xl mb-12 text-cyan-400 font-bold" data-aos="fade-right">Latest Tech Insights</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredPosts.map((post, index) => (
+            <article 
+              class="bg-gray-800/50 backdrop-blur-sm rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 border border-gray-700 shadow-lg"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div class="p-6">
+                <time class="text-sm text-cyan-400 font-semibold">{post.date}</time>
+                <h3 class="font-['Orbitron'] text-xl mt-2 mb-3 font-bold">
+                  <a href={`/blog/${post.slug}`} class="hover:text-cyan-400 transition-colors">
+                    {post.title}
+                  </a>
+                </h3>
+                <p class="text-gray-300 font-medium">{post.excerpt}</p>
+                <a 
+                  href={`/blog/${post.slug}`}
+                  class="inline-block mt-4 text-cyan-400 hover:text-cyan-300 transition-colors font-bold"
+                >
+                  Read more →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="py-16 bg-gray-800/50 backdrop-blur-sm rounded-lg my-16 border border-gray-700 shadow-xl" data-aos="fade-up">
+        <div class="text-center max-w-2xl mx-auto px-4">
+          <h2 class="font-['Orbitron'] text-3xl mb-4 text-cyan-400 font-bold">Stay Updated</h2>
+          <p class="text-gray-300 mb-6 font-medium">
+            Subscribe to receive the latest tech insights and updates.
+          </p>
+          <form class="flex gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex-1 px-4 py-2 rounded-lg border border-gray-700 bg-gray-900/50 text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400 backdrop-blur-sm"
+            />
+            <button
+              type="submit"
+              class="bg-gradient-to-r from-cyan-600 to-cyan-400 text-white px-6 py-2 rounded-lg hover:from-cyan-500 hover:to-cyan-300 transition-all duration-300 transform hover:scale-105 font-bold"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-100vh); }
+      100% { transform: translateY(-200vh); }
+    }
+    
+    @keyframes text {
+      0%, 100% {
+        background-size: 200% 200%;
+        background-position: left center;
+      }
+      50% {
+        background-size: 200% 200%;
+        background-position: right center;
+      }
+    }
+    
+    .animate-text {
+      animation: text 3s ease infinite;
+    }
+  </style>
+</Layout>

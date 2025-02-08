@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+  {
+    title: "Getting Started with Web Development",
+    date: "2024-04-10",
+    excerpt: "Learn the fundamentals of web development and start your journey...",
+    slug: "getting-started-web-dev"
+  },
+  // Add more blog posts here
+];
+---
+
+<Layout title="Blog Articles">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 
+      class="font-['Orbitron'] text-4xl md:text-5xl mb-16 text-center text-cyan-400"
+      data-aos="fade-down"
+    >
+      Blog Articles
+    </h1>
+    
+    <div class="grid gap-12">
+      {posts.map((post, index) => (
+        <article 
+          class="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 border border-gray-700 shadow-xl transform hover:scale-105 transition-all duration-300"
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <time class="text-cyan-400 font-semibold">{post.date}</time>
+          <h2 class="font-['Orbitron'] text-2xl mt-2 mb-4 text-cyan-300">
+            <a 
+              href={`/blog/${post.slug}`}
+              class="hover:text-cyan-400 transition-colors"
+            >
+              {post.title}
+            </a>
+          </h2>
+          <p class="text-gray-200 text-lg font-medium mb-4">{post.excerpt}</p>
+          <a 
+            href={`/blog/${post.slug}`}
+            class="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors font-bold group"
+          >
+            Read more 
+            <span class="transform translate-x-0 group-hover:translate-x-2 transition-transform ml-2">→</span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
