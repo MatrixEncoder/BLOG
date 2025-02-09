@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+const Layout = (await import('../layouts/Layout.astro')).default;
 
 const funFacts = [
   "The first computer mouse was made of wood!",
