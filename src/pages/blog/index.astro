@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+const Layout = (await import('../../layouts/Layout.astro')).default;
 
 const posts = [
   {
@@ -10,6 +10,7 @@ const posts = [
   },
   // Add more blog posts here
 ];
+
 ---
 
 <Layout title="Blog Articles">

@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+const Layout = (await import('../../layouts/Layout.astro')).default;
 
 // Get admin password from environment variable
 const ADMIN_PASSWORD = import.meta.env.ADMIN_PASSWORD;
